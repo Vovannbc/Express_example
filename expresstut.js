@@ -80,7 +80,7 @@ app.post('/file-upload/:year/:month',
 });
 
 app.get('/cookie', function(req, res){
-  res.cookie('username', 'Derek Banas', {expire: new Date() + 9999}).send('username has the value of Derek Banas');
+  res.cookie('username', 'Vovka NBC', {expire: new Date() + 9999}).send('username has the value of Vovka NBC');
 });
 
 app.get('/listcookies', function(req, res){
