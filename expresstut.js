@@ -2,6 +2,8 @@ var express = require('express');
 
 var app = express();
 
+var fs = require("fs");
+
 app.disable('x-powered-by');
 
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -59,14 +61,14 @@ app.post('/process', function(req,res){
   res.redirect(303, '/thankyou');
 });
 
-app.get('/file-upload', function(req, res){
+app.get('/add_receipt', function(req, res){
   var now = new Date();
-  res.render('file-upload',{
+  res.render('add_receipt',{
     year: now.getFullYear(),
     month: now.getMonth() });
   });
 
-app.post('/file-upload/:year/:month',
+app.post('/add_receipt/:year/:month',
   function(req, res){
     var form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, file){
@@ -121,8 +123,6 @@ app.use(function(req, res, next){
 app.get('/viewcount', function(req, res, next){
   res.send('You viewed this page ' + req.session.views['/viewcount'] + ' times');
 });
-
-var fs = require("fs");
 
 app.get('/readfile', function(req, res, next){
   fs.readFile('./public/randomfile.txt', function(err, data){
