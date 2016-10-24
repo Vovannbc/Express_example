@@ -1,17 +1,16 @@
 var express = require('express');
 
 var app = express();
+global.engines = require('jade');
 
 var fs = require("fs");
 
 app.disable('x-powered-by');
 
-var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+app.set('view engine', 'jade');
+app.set('views', './views');
 
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
-
-app.use(require('body-parser').urlencoded({extended: true}));
+// app.use(require('body-parser').urlencoded({extended: true}));
 
 var formidable = require('formidable');
 
@@ -23,7 +22,11 @@ app.set('port', process.env.PORT || 7001);
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
-  res.render('home');
+  res.render('home', {title: "Home Page"});
+});
+
+app.get('/head', function(req, res){
+    res.render('head');
 });
 
 app.use(function(req, res, next){
@@ -120,35 +123,35 @@ app.use(function(req, res, next){
 
 });
 
-app.get('/viewcount', function(req, res, next){
-  res.send('You viewed this page ' + req.session.views['/viewcount'] + ' times');
-});
-
-app.get('/readfile', function(req, res, next){
-  fs.readFile('./public/randomfile.txt', function(err, data){
-      if(err){
-        return console.error(err);
-      }
-      res.send("the File : " + data.toString());
-  });
-});
-
-app.get('/writefile', function(req, res, next){
-  fs.writeFile('./public/randomfile2.txt',
-    'More random text', function(err){
-      if(err){
-        return console.error(err);
-      }
-    });
-
-  fs.readFile('./public/randomfile2.txt', function(err, data){
-    if(err){
-      return console.error(err);
-    }
-    res.send("The File " + data.toString());
-  });
-
-});
+// app.get('/viewcount', function(req, res, next){
+//   res.send('You viewed this page ' + req.session.views['/viewcount'] + ' times');
+// });
+//
+// app.get('/readfile', function(req, res, next){
+//   fs.readFile('./public/randomfile.txt', function(err, data){
+//       if(err){
+//         return console.error(err);
+//       }
+//       res.send("the File : " + data.toString());
+//   });
+// });
+//
+// app.get('/writefile', function(req, res, next){
+//   fs.writeFile('./public/randomfile2.txt',
+//     'More random text', function(err){
+//       if(err){
+//         return console.error(err);
+//       }
+//     });
+//
+//   fs.readFile('./public/randomfile2.txt', function(err, data){
+//     if(err){
+//       return console.error(err);
+//     }
+//     res.send("The File " + data.toString());
+//   });
+//
+// });
 
 app.use(function(req, res){
   res.type('text/html');

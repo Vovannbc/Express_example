@@ -4,7 +4,6 @@
 var db = require("mongodb").MongoClient,
     assert = require("assert");
 
-
 function getConnectionInfo() {
     return {
         host: "localhost",
@@ -16,7 +15,7 @@ function getConnectionInfo() {
     };
 }
 
-function initdb() {
+var initdb = (function(){
     var dbinfo = getConnectionInfo();
     db.connect('mongodb://'+dbinfo.host+':'+dbinfo.port+'/'+dbinfo.dbName, function (err, _db) {
         assert.equal(null, err);
@@ -30,4 +29,4 @@ function initdb() {
         });
         console.log("Called finds");
     })
-}
+}());

@@ -1,3 +1,3 @@
-var database = require('db.js');
+var database = require('./db.js');
 
-database.initdb();
+database.initdb;
