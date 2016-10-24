@@ -1,18 +1,21 @@
+var path = require('path');
+
+global.siteRootDirectory = path.resolve(__dirname);
+
+var includeDir = __dirname;
+global.include = function(path) {
+    return require(includeDir + path);
+};
+
+var include = global.include;
+
 var express = require('express');
 
 var app = express();
-global.engines = require('jade');
-
-var fs = require("fs");
-
-app.disable('x-powered-by');
 
 app.set('view engine', 'jade');
 app.set('views', './views');
 
-// app.use(require('body-parser').urlencoded({extended: true}));
-
-var formidable = require('formidable');
 
 var credentials = require('./credentials.js');
 app.use(require('cookie-parser')(credentials.cookieSecret));
@@ -23,10 +26,6 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
   res.render('home', {title: "Home Page"});
-});
-
-app.get('/head', function(req, res){
-    res.render('head');
 });
 
 app.use(function(req, res, next){
@@ -46,6 +45,10 @@ app.use(function(err, req, res, next){
 
 app.get('/about', function(req, res){
   res.render('about');
+});
+
+app.get('/aboutus', function(req, res){
+  res.render('aboutus');
 });
 
 app.get('/contact', function(req, res){
@@ -162,7 +165,7 @@ app.use(function(req, res){
 app.use(function(err, req, res, next){
   console.error(err.stack);
   res.status(500);
-  res.render('500');
+  //res.render('500');
 });
 
 
