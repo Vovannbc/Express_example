@@ -4,4 +4,8 @@ node_modules
 .DS_Store
 credentials.js
 libraries
-.idea/*
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/jsLibraryMappings.xml
+.idea/Receipt_site_project.iml

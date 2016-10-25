@@ -1,14 +1,3 @@
-var path = require('path');
-
-global.siteRootDirectory = path.resolve(__dirname);
-
-var includeDir = __dirname;
-global.include = function(path) {
-    return require(includeDir + path);
-};
-
-var include = global.include;
-
 var express = require('express');
 
 var app = express();
