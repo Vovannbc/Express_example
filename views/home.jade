@@ -1,12 +1,17 @@
 include partials/head
 include partials/navbar
+include base-page
+
 html
 	+HEAD
 	title!= title
 	body
+		+HEAD_TITLE
 		+NAVBAR
 		.container-fluid
 			.row
 				.col-sm-12.col-md-6.col-md-offset-3
 					.text-center
 						h3 Welcome to my Receipts Blog (jade)
+
+	+BOTTOM_SCRIPTS

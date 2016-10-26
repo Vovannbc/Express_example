@@ -1,0 +1,28 @@
+include partials/head
+include partials/navbar
+include base-page
+html
+	+HEAD
+	title!= title
+	body
+		+HEAD_TITLE
+		+NAVBAR
+		.container-fluid
+			.row
+				.col-sm-12.col-md-6.col-md-offset-3
+					form.form-horizontal
+						.form-group
+							label Title
+							input.form-control(type='text', placeholder='title')
+						.form-group
+							label Ingredients
+							input.form-control(type='text', placeholder='ingredients')
+						.form-group
+							label Description
+							input.form-control(type='text', placeholder='description')
+						.form-group
+							label Link to original
+							input.form-control(type='text', placeholder='link')
+						.form-group
+							button.btn.btn-default(type='submit') Send to database
+	+BOTTOM_SCRIPTS

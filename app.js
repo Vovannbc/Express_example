@@ -26,12 +26,16 @@ app.use(function(err, req, res, next){
     next();
 });
 
-app.get('/about', function(req, res){
-    res.render('about');
-});
-
 app.get('/aboutus', function(req, res){
     res.render('aboutus');
+});
+
+app.get('/add_receipt', function(req, res){
+    res.render('add_receipt');
+});
+
+app.get('/allreceipt', function(req, res){
+    res.render('allreceipts', {TEST:+TEST});
 });
 
 app.use(function(req, res){
@@ -43,7 +47,7 @@ app.use(function(req, res){
 app.use(function(err, req, res, next){
     console.error(err.stack);
     res.status(500);
-    //res.render('500');
+    res.render('500');
 });
 
 app.listen(app.get('port'), function(){

@@ -23,7 +23,7 @@ var initdb = (function(){
 
         _db.collection('posts').find({}).toArray(function (err, items) {
             items.forEach(function (item) {
-                console.log(item.title);
+                //console.log(item.title);
             });
             _db.close();
         });
