@@ -9,7 +9,6 @@ var app = express();
 app.set('view engine', 'jade');
 app.set('views', './views');
 
-
 var credentials = require('./credentials.js');
 app.use(require('cookie-parser')(credentials.cookieSecret));
 
@@ -32,6 +31,15 @@ app.get('/aboutus', function(req, res){
 
 app.get('/add_receipt', function(req, res){
     res.render('add_receipt');
+});
+
+app.post('/add_receipt', function (req, res, next) {
+    console.log(req.body);            //{}
+    console.log(req.body.title);      //undefined
+    console.log(req.body.link);       //undefined
+    res.send("Thanks for inserting!");
+    res.json(req.body);               //{}
+    next();
 });
 
 app.get('/allreceipt', function(req, res){

@@ -1,8 +1,12 @@
+include ../lib/random-phrase.js
 mixin HEAD_TITLE
 	.container-fluid(style="background-color:#d0d4cb")
 		.container(style="background-color:#d4c6a5")
 			.title
 				h3 Logo Title
+				img(src="/img/img1.jpg" width='100%')
 			.slogan
 				h2 Main Slogan
 			div
+				h4 Phrase for today
+				p.text-center!= getPhrase()

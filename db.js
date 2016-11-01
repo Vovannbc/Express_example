@@ -7,9 +7,9 @@ function getConnectionInfo() {
         host: "localhost",
         port: 27017,
         user: "Vovka",
-        dbName:	"blog",
+        dbName:	"testreceipts",
         password: "blog",
-        collection: "posts"
+        collection: "firstreceipt"
     };
 }
 
@@ -20,7 +20,7 @@ var initdb = (function(){
         console.log("Succesfull connected to Db server");
 
         DB = _db;
-        _db.collection('posts').find({}).toArray(function (err, items) {
+        _db.collection(getConnectionInfo().collection).find({}).toArray(function (err, items) {
             items.forEach(function (item) {
                 //console.log(item.title);
             });
