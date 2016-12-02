@@ -8,13 +8,11 @@
 	var getPhrase = function (){var idx = Math.floor(Math.random()*phrases.length); return phrases[idx]}
 
 mixin HEAD_TITLE
-	.container-fluid(style="background-color:#d0d4cb")
-		.container(style="background-color:#d4c6a5")
+	.container-fluid(style="background-image: url(/img/img1.jpg); background-size:cover; height:100%")
+		.container
+			div.phrase.text-right
+				span Phrase for today : &#009;
+					span
+						!= getPhrase()
 			.title
 				h3 Logo Title
-				img(src="/img/img1.jpg" width='100%')
-			.slogan
-				h2 Main Slogan
-			div
-				h4 Phrase for today
-				p.text-center!= getPhrase()
