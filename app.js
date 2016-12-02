@@ -1,10 +1,10 @@
-var database = require('./db.js');
-
-database.initdb;
-
 var express = require('express');
-
 var app = express();
+
+app.set('port', process.env.PORT || 7000);
+
+var database = require('./db.js');
+database.initdb;
 
 app.set('view engine', 'jade');
 app.set('views', __dirname +'/views');
@@ -12,7 +12,7 @@ app.set('views', __dirname +'/views');
 var credentials = require('./credentials.js');
 app.use(require('cookie-parser')(credentials.cookieSecret));
 
-app.set('port', process.env.PORT || 7001);
+
 
 app.use(express.static(__dirname + '/public'));
 
@@ -31,6 +31,10 @@ app.get('/aboutus', function(req, res){
 
 app.get('/add_receipt', function(req, res){
     res.render('add_receipt');
+});
+
+app.get('/allreceipt', function(req, res){
+    res.render('allreceipts', {TEST: TEST});
 });
 
 // app.post('/add_receipt', function (req, res, next) {
