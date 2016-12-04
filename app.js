@@ -1,15 +1,12 @@
 var express = require('express');
-
 var app = express();
 
-
-//var database = require('./db.js');
-
-//database.initdb;
-
+app.set('port', process.env.PORT || 7000);
 app.set('view engine', 'jade');
-app.set('views', './views');
-app.set('port', process.env.PORT || 7001);
+app.set('views', __dirname +'/views');
+
+var database = require('./db.js');
+database.initdb;
 
 var credentials = require('./credentials.js');
 app.use(    require('cookie-parser')(credentials.cookieSecret),
@@ -31,7 +28,20 @@ app.get('/add_receipt', function(req, res){
 });
 
 app.get('/allreceipt', function(req, res){
-    res.render('allreceipts', {TEST:+TEST});
+    res.render('allreceipts', {TEST: TEST});
+});
+
+// app.post('/add_receipt', function (req, res, next) {
+//     console.log(req.body);            //{}
+//     console.log(req.body.title);      //undefined
+//     console.log(req.body.link);       //undefined
+//     res.send("Thanks for inserting!");
+//     res.json(req.body);               //{}
+//     next();
+// });
+
+app.get('/allreceipt', function(req, res){
+    res.render('allreceipts', {TEST: TEST});
 });
 
 app.use(function(req, res){

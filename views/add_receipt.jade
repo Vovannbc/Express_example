@@ -5,24 +5,25 @@ html
 	+HEAD
 	title!= title
 	body
-		+HEAD_TITLE
 		+NAVBAR
+		+HEAD_TITLE
+		//script(src='add_receipt.js')
 		.container-fluid
 			.row
 				.col-sm-12.col-md-6.col-md-offset-3
-					form.form-horizontal
+					form.form-horizontal(action='/add_receipt', method="POST", enctype="multipart/form-data")
 						.form-group
 							label Title
-							input.form-control(type='text', placeholder='title')
+							input.form-control#receipttitle(type='text', name="title" placeholder='title')
 						.form-group
 							label Ingredients
-							input.form-control(type='text', placeholder='ingredients')
+							input.form-control#ingredients(type='text', name="ingredients", placeholder='ingredients')
 						.form-group
 							label Description
-							input.form-control(type='text', placeholder='description')
+							input.form-control#description(type='text', name="description", placeholder='description')
 						.form-group
 							label Link to original
-							input.form-control(type='text', placeholder='link')
+							input.form-control#originallink(type='link', name="link", placeholder='link')
 						.form-group
 							button.btn.btn-default(type='submit') Send to database
 	+BOTTOM_SCRIPTS

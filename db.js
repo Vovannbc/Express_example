@@ -1,32 +1,32 @@
-/**
- * Created by zr210290ovo on 21.10.16.
- */
-var db = require("mongodb").MongoClient,
-    assert = require("assert");
+var database = require("mongodb").MongoClient,
+    assert = require("assert"),
+    DB;
 
 function getConnectionInfo() {
     return {
         host: "localhost",
         port: 27017,
         user: "Vovka",
-        dbName:	"blog",
+        dbName:	"testreceipts",
         password: "blog",
-        collection: "posts"
+        collection: "firstreceipt"
     };
 }
 
 var initdb = (function(){
     var dbinfo = getConnectionInfo();
-    db.connect('mongodb://'+dbinfo.host+':'+dbinfo.port+'/'+dbinfo.dbName, function (err, _db) {
+    database.connect('mongodb://'+dbinfo.host+':'+dbinfo.port+'/'+dbinfo.dbName, function (err, _db) {
         assert.equal(null, err);
         console.log("Succesfull connected to Db server");
 
-        _db.collection('posts').find({}).toArray(function (err, items) {
+        DB = _db;
+        _db.collection(getConnectionInfo().collection).find({}).toArray(function (err, items) {
             items.forEach(function (item) {
                 //console.log(item.title);
             });
-            _db.close();
+            //_db.close();
         });
         console.log("Called finds");
     })
 }());
+
