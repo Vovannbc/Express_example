@@ -1,29 +1,25 @@
-var database = require('./db.js');
-
-database.initdb;
-
 var express = require('express');
 
 var app = express();
 
+
+//var database = require('./db.js');
+
+//database.initdb;
+
 app.set('view engine', 'jade');
 app.set('views', './views');
-
-
-var credentials = require('./credentials.js');
-app.use(require('cookie-parser')(credentials.cookieSecret));
-
 app.set('port', process.env.PORT || 7001);
 
-app.use(express.static(__dirname + '/public'));
+var credentials = require('./credentials.js');
+app.use(    require('cookie-parser')(credentials.cookieSecret),
+            express.static(__dirname + '/public'),
+            function(err, req, res, next){
+                console.log('Error : ' + err.message);
+                next()});
 
 app.get('/', function(req, res){
     res.render('home', {title: "Home Page"});
-});
-
-app.use(function(err, req, res, next){
-    console.log('Error : ' + err.message);
-    next();
 });
 
 app.get('/aboutus', function(req, res){
