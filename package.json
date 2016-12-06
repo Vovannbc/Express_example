@@ -13,6 +13,8 @@
     "assert": "^1.4.1",
     "async": "^2.1.2",
     "body-parser": "^1.14.1",
+    "chai": "^3.5.0",
+    "connect": "^2.19.5",
     "connect-mongo": "^1.3.2",
     "cookie-parser": "^1.4.0",
     "ejs-locals": "^1.0.2",
@@ -25,15 +27,18 @@
     "jade-cli": "^0.1.1",
     "less": "^2.7.1",
     "mongodb": "^2.2.10",
+    "morgan": "~1.1.1",
     "mongoose": "^4.6.4",
     "nconfig": "0.0.6",
     "node-uuid": "^1.4.7",
+    "nodemailer": "^2.6.4",
     "nodemon": "^1.11.0",
     "parseurl": "^1.3.0",
     "path": "^0.12.7",
     "pug": "^2.0.0-beta6",
     "string": "^3.3.3",
     "validator": "^6.1.0",
-    "winston": "^2.2.0"
+    "winston": "^2.2.0",
+    "session-mongoose": "^0.4.1"
   }
 }

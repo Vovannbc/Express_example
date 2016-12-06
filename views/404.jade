@@ -1,4 +1,13 @@
-.container-fluid
-	.row
-		.col-sm-8.col-sm-offset-2
-			h3 404 : Not Found (sended from app)
+include partials/head
+include partials/navbar
+include base-page
+
+html
+	+ HEAD
+	body
+		+NAVBAR
+		+BACKGROUND_IMAGE
+		.container-fluid
+			.row
+				.col-sm-8.col-sm-offset-2
+					h3 404 : Page Not Found

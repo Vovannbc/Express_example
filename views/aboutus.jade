@@ -1,7 +1,12 @@
 include partials/head
+include partials/navbar
+include base-page
+
 html
 	+ HEAD
 	body
+		+NAVBAR
+		+BACKGROUND_IMAGE
 		.container-fluid
 			.page-header
 				h3 About us

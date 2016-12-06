@@ -1,4 +1,13 @@
-.container-fluid
-	.row
-		.col-sm-8.col-sm-offset-2
-			h3 500 : Server Error
+include partials/head
+include partials/navbar
+include base-page
+
+html
+	+ HEAD
+	body
+		+NAVBAR
+		+BACKGROUND_IMAGE
+		.container-fluid
+			.row
+				.col-sm-8.col-sm-offset-2
+					h3 500 : Server Error
