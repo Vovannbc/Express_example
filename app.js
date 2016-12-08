@@ -1,4 +1,3 @@
-var credentials = require('./credentials.js');
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
@@ -7,6 +6,8 @@ var opts = {
         socketOptions: {keepAlive: 1}
     }
 };
+var credentials = require('./credentials.js');
+
 var nodemailer = require('nodemailer');
 var mailTransport = nodemailer.createTransport('SMTP', {
     service: "Gmail",
@@ -16,16 +17,16 @@ var mailTransport = nodemailer.createTransport('SMTP', {
     }
 });
 
-switch (app.get('env')){
-    case 'development':
-        mongoose.connect(credentials.mongo.development.connectionString, opts);
-        break;
-    case 'production':
-        mongoose.connect(credentials.mongo.production.connectionString, opts);
-        break;
-    default :
-        throw new Error('Неизвестная среда выполнения '+ app.get('env'));
-}
+// switch (app.get('env')){
+//     case 'development':
+//         mongoose.connect(credentials.mongo.development.connectionString, opts);
+//         break;
+//     case 'production':
+//         mongoose.connect(credentials.mongo.production.connectionString, opts);
+//         break;
+//     default :
+//         throw new Error('Неизвестная среда выполнения '+ app.get('env'));
+// }
 
 app.set('port', process.env.PORT || 7000);
 app.set('view engine', 'jade');
@@ -45,18 +46,18 @@ app.get('/', function(req, res){
     res.render('home', {title: "Home Page"});
 });
 app.get('/aboutus', function(req, res){
-    res.render('aboutus');
+    res.render('aboutus', {title: "About us"});
 });
 app.get('/add_receipt', function(req, res){
-    res.render('add_receipt');
+    res.render('add_receipt', {title: "Add new receipt"});
 });
 app.get('/allreceipt', function(req, res){
-    res.render('allreceipts', {TEST: TEST});
-});
-app.get('/allreceipt', function(req, res){
-    res.render('allreceipts', {TEST: TEST});
+    res.render('allreceipts', {title: "List Of Receipts"});
 });
 
+app.get('/rating', function(req, res){
+    res.render('rating', {title: "Rating of receipts"});
+});
 //!!!!!!!!!here other routes
 
 
