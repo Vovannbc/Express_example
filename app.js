@@ -75,6 +75,7 @@ app.post('/aboutus', function (req, res) {
         });
     res.redirect(303, '/thank-you'/*, {message: "Thank you for sending letter!"}*/)
 });
+// var require('./send-mail.js');
 
 app.post('/add_receipt', function (req, res) {
     var text = req.body.text;

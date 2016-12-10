@@ -1,1 +1,1 @@
-Receipt Blog!
+Receipt Blog for my wife!

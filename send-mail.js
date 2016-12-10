@@ -1,5 +1,3 @@
-var app = include(app);
-
 app.post('/aboutus', function (req, res) {
     var text = req.body.text;
     var email = req.body.email;
