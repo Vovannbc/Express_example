@@ -5,7 +5,7 @@
   "description": "Receipt blog",
   "main": "expresstut.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "scripts": { "start": "nodemon app.js" }
   },
   "author": "Vovannbc",
   "license": "",

@@ -27,7 +27,7 @@ var transporter = nodemailer.createTransport('smtps://'+credentials.gmail.user+'
 
 app.set('port', process.env.PORT || 7000);
 app.set('view engine', 'jade');
-app.set('views', __dirname +'/views');
+app.set('views', __dirname +'/app/views');
 
 var database = require('./db.js');
 database.initdb;
