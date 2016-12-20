@@ -1,10 +1,12 @@
-include ../lib/random-phrase.js
+- var phrases = [ 'Найбільшу владу має той, хто має владу над собою.','Борода по коліна, а розуму, як у дитини.',"Багатий не той, хто багатий, а той, хто знає, скільки йому потрібно”.","Всякий чує лише те, що розуміє.","Гарний початок — половина справи.", "З дружиною при чужих не песться і не сварися: перше — знак дурості, друге — сказу." ];
+- var getPhrase = function () {var idx = Math.floor(Math.random()*phrases.length);return phrases[idx];};
+
 mixin HEAD_TITLE
 	.container-fluid(style="background-color:#d0d4cb")
 		.container(style="background-color:#d4c6a5")
 			.title
 				h3 Logo Title
-				img(src="/img/img1.jpg" width='100%')
+				img(src="/img/img1.jpg" style="margin: 0 auto")
 			.slogan
 				h2 Main Slogan
 			div

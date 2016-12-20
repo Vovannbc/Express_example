@@ -11,6 +11,11 @@ app.set('views', __dirname +'/views');
 
 var credentials = require('./credentials.js');
 app.use(require('cookie-parser')(credentials.cookieSecret));
+app.use(require('express-session')({
+    resave: false,
+    saveUninitialized: false,
+    secret: credentials.cookieSecret
+}));
 
 app.set('port', process.env.PORT || 7001);
 

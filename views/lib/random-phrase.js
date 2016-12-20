@@ -4,7 +4,7 @@ var phrases =	[ 'Найбільшу владу має той, хто має вл
     "Всякий чує лише те, що розуміє.",	"Гарний початок — половина справи.",
     "З дружиною при чужих не песться і не сварися: перше — знак дурості, друге — сказу." ];
 
-exports.getPhrase = function () {
+var getPhrase = function () {
     var idx = Math.floor(Math.random()*phrases.length);
     return phrases[idx];
 };
