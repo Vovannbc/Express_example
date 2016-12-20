@@ -1,0 +1,17 @@
+include partials/head
+include partials/navbar
+include base-page
+
+html
+	+ HEAD
+	body
+		+NAVBAR
+		+BACKGROUND_IMAGE
+		+CONTAINER_MD_6_CENTER
+			if message
+				h3!= message
+			else
+				h3 Thank you!
+
+
+	+BOTTOM_SCRIPTS

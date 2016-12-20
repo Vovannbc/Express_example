@@ -1,0 +1,17 @@
+body {
+    margin:0;
+    padding:0;
+}
+
+.container-fluid.page-bg {
+    background: url(/img/img1.jpg) center;
+    background-size:cover;
+    height:100%;
+    width: 100%;
+    position:absolute;
+    opacity: 0.3;
+}
+
+.navbar {
+    margin-bottom: 0;
+}

@@ -1,0 +1,33 @@
+include partials/head
+include partials/navbar
+include base-page
+
+mixin FORM_SEND_LETTER
+	form.form-horizontal(action='', method="POST")
+		.form-group
+			label.col-sm-3.control-label(for='input_text') Insert here text
+			.col-sm-9
+				input.form-control#input_text(type='text', name='text', placeholder='What you want to send ?')
+		.form-group
+			label.col-sm-3.control-label(for='input_email') Whom you want to send?
+			.col-sm-9
+				input.form-control#input_email(type='email', name='email', placeholder='Email')
+		.form-group
+			label.col-sm-3.control-label(for='input_text') Insert here text
+			.col-sm-9
+				input.form-control#input_subject(type='text', name='subject', placeholder='Subject')
+		.form-group
+			.col-sm-offset-3.col-sm-9
+				input.btn.btn-default(type='submit', placeholder='Send')
+
+html
+	+ HEAD
+	body
+		+NAVBAR
+		+BACKGROUND_IMAGE
+		+CONTAINER_MD_6_CENTER
+			h3 About us
+		+CONTAINER_MD_6_CENTER
+			+FORM_SEND_LETTER
+
+	+BOTTOM_SCRIPTS
