@@ -10,7 +10,7 @@ var opts = {
 var credentials = require('./credentials.js');
 
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://'+credentials.gmail.user+':'+credentials.gmail.password+'@smtp.gmail.com');
+//var transporter = nodemailer.createTransport('smtps://'+credentials.gmail.user+':'+credentials.gmail.password+'@smtp.gmail.com');
 
 
 
