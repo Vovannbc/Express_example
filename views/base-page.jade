@@ -1,14 +1,36 @@
-- var phrases = [ 'Найбільшу владу має той, хто має владу над собою.','Борода по коліна, а розуму, як у дитини.',"Багатий не той, хто багатий, а той, хто знає, скільки йому потрібно”.","Всякий чує лише те, що розуміє.","Гарний початок — половина справи.", "З дружиною при чужих не песться і не сварися: перше — знак дурості, друге — сказу." ];
-- var getPhrase = function () {var idx = Math.floor(Math.random()*phrases.length);return phrases[idx];};
+-	var phrases = require('./texts/phrases.js');
+-	var getPhrase = function (){var idx = Math.floor(Math.random()*phrases.length); return phrases[idx]}
 
 mixin HEAD_TITLE
-	.container-fluid(style="background-color:#d0d4cb")
-		.container(style="background-color:#d4c6a5")
+	.container-fluid
+		.container
+			div.phrase.text-center
+				span Phrase for today : &#009;
+					span!= getPhrase()
 			.title
 				h3 Logo Title
-				img(src="/img/img1.jpg" style="margin: 0 auto")
-			.slogan
-				h2 Main Slogan
-			div
-				h4 Phrase for today
-				p.text-center!= getPhrase()
+mixin BACKGROUND_IMAGE
+	.container-fluid.page-bg(style="")
+
+mixin PHRASE
+	div.phrase.text-center
+		span Phrase for today : &#009;
+			span!= getPhrase()
+
+mixin CONTAINER_MD_8_CENTER
+	.container-fluid
+		.row
+			.col-sm-12.col-md-8.col-md-offset-2
+				block
+
+mixin CONTAINER_MD_6_CENTER
+	.container-fluid
+		.row
+			.col-sm-12.col-md-6.col-md-offset-3
+				block
+
+mixin CONTAINER_MD_4_CENTER
+	.container-fluid
+		.row
+			.col-sm-12.col-md-4.col-md-offset-4
+				block

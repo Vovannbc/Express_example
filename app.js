@@ -10,7 +10,7 @@ var opts = {
 var credentials = require('./credentials.js');
 
 var nodemailer = require('nodemailer');
-//var transporter = nodemailer.createTransport('smtps://'+credentials.gmail.user+':'+credentials.gmail.password+'@smtp.gmail.com');
+var transporter = nodemailer.createTransport('smtps://'+credentials.gmail.user+':'+credentials.gmail.password+'@smtp.gmail.com');
 
 
 
@@ -27,7 +27,7 @@ var nodemailer = require('nodemailer');
 
 app.set('port', process.env.PORT || 7000);
 app.set('view engine', 'jade');
-app.set('views', __dirname +'/app/views');
+app.set('views', __dirname +'/views');
 
 var credentials = require('./credentials.js');
 app.use(require('cookie-parser')(credentials.cookieSecret));
@@ -46,54 +46,8 @@ app.use(    require('cookie-parser')(credentials.cookieSecret),
                 next()});
 app.use(require('body-parser'). urlencoded({ extended: true }));
 
-app.get('/', function(req, res){
-    res.render('home', {title: "Home Page"});
-});
-app.get('/aboutus', function(req, res){
-    res.render('aboutus', {title: "About us"});
-});
-app.get('/add_receipt', function(req, res){
-    res.render('add_receipt', {title: "Add new receipt"});
-});
-app.get('/allreceipts', function(req, res){
-    res.render('allreceipts', {title: "List Of Receipts"});
-});
-
-app.get('/rating', function(req, res){
-    res.render('rating', {title: "Rating of receipts"});
-});
-
-app.get('/thank-you', function(req, res){
-    res.render('thank-you');
-});
-
-app.post('/aboutus', function (req, res) {
-    var text = req.body.text;
-    var email = req.body.email;
-    var subject = req.body.subject;
-
-    transporter.sendMail({from: credentials.gmail.name+" "+credentials.gmail.surname+ '<credentials.gmail.user>',
-            to: email,
-            subject: subject,
-            text: text},
-        function(error, info){ if(error){return console.log(error);}
-            console.log('Message sent: ' + info.response);
-        });
-    res.redirect(303, '/thank-you'/*, {message: "Thank you for sending letter!"}*/)
-});
-// var require('./send-mail.js');
-
-app.post('/add_receipt', function (req, res) {
-    var text = req.body.text;
-    var title = req.body.title;
-    var ingredients = req.body.ingredients;
-    var description = req.body.description;
-    var link = req.body.link;
-
-    res.redirect(303, '/thank-you', {message: "Thank you for new receipt!"})
-});
-//!!!!!!!!!here other routes
-
+// add routes
+require('./routes.js')(app);
 
 
 app.use(function(req, res){
