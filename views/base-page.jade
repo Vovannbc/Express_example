@@ -1,21 +1,16 @@
--	var phrases = require('./texts/phrases.js');
--	var getPhrase = function (){var idx = Math.floor(Math.random()*phrases.length); return phrases[idx]}
+mixin PHRASE
+	- var phraseVar = server_phrases
 
 mixin HEAD_TITLE
 	.container-fluid
 		.container
 			div.phrase.text-center
 				span Phrase for today : &#009;
-					span!= getPhrase()
+					+PHRASE
 			.title
 				h3 Logo Title
 mixin BACKGROUND_IMAGE
 	.container-fluid.page-bg(style="")
-
-mixin PHRASE
-	div.phrase.text-center
-		span Phrase for today : &#009;
-			span!= getPhrase()
 
 mixin CONTAINER_MD_8_CENTER
 	.container-fluid

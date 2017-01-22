@@ -1,30 +1,30 @@
 mixin NAVBAR
-	.container
-		.navbar.navbar-default
-			.container-fluid
-				.navbar-header
-					button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
-						span.sr-only
-						span.icon-bar
-						span.icon-bar
-						span.icon-bar
-					a.pull-left(href='/')
-				#bs-example-navbar-collapse-1.collapse.navbar-collapse
-					ul.nav.navbar-nav
-						li
-							a(href="/") Home
-						li
-							a(href="/aboutus") About Us
-						li
-							a(href="/allreceipts") Show all
-						li
-							a(href="/add_receipt") Add receipt
-						li
-							a(href="/rating") Rating
-					.navbar-form.navbar-left
-						.form-group
-							input.form-control(type='text', placeholder="Search")
-						button.btn.btn-default(type='submit') Submit
-					ul.nav.navbar-nav.navbar-right
-						li
-							a(href="/login") Log In
+    .container
+        .navbar.navbar-default
+            .container-fluid
+                .navbar-header
+                    button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+                        span.sr-only
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.pull-left(href='/')
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav
+                        li
+                            a(href="/") Home
+                        li
+                            a(href="/allreceipts") All receipts
+                        li
+                            a(href="/add_receipt") Add receipt
+                        li
+                            a(href="/rating") Rating
+                        li
+                            a(href="/aboutus") About Us
+                    .navbar-form.navbar-left
+                        .form-group
+                            input.form-control(type='text', placeholder="Search")
+                        button.btn.btn-default(type='submit') Submit
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href="/login") Log In

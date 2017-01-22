@@ -1,4 +1,4 @@
-module.exports = function () {
+let phrases = () => {
     return [ "Найбільшу владу має той, хто має владу над собою.",
         "Борода по коліна, а розуму, як у дитини.",
         "Багатий не той, хто багатий, а той, хто знає, скільки йому потрібно”.",
@@ -6,3 +6,7 @@ module.exports = function () {
         "Гарний початок — половина справи.",
         "З дружиною при чужих не песться і не сварися: перше — знак дурості, друге — сказу." ]
 };
+
+let getPhrase = () => {let idx = Math.floor(Math.random()*phrases.length); return phrases[idx]};
+
+module.exports = getPhrase;
