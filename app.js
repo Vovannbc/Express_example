@@ -66,7 +66,7 @@ app.post('/aboutus', function (req, res) {
     var email = req.body.email;
     var subject = req.body.subject;
 
-    transporter.sendMail({from: credentials.gmail.name+" "+credentials.gmail.surname+ '<credentials.gmail.user>',
+    transporter.sendMail({from: credentials.gmail.name+" "+credentials.gmail.surname,
             to: email,
             subject: subject,
             text: text},
