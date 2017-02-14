@@ -3,10 +3,12 @@ body {
     padding:0;
 }
 
+
+
 .container-fluid.page-bg {
-    background: url(/img/img1.jpg) center;
+    background: url(/img/home-background.jpg) center no-repeat fixed;
     background-size:cover;
-    height:100%;
+    height:calc(100vh - 128px);
     width: 100%;
     position:absolute;
     opacity: 0.3;

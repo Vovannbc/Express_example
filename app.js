@@ -1,17 +1,22 @@
-var express = require('express');
+var express = require('express'),
+    nodemailer = require('nodemailer'),
+    expressSession= require('express-session'),
+    cookieParser = require('cookie-parser'),
+    bodyParser= require('body-parser'),
+    database = require('./db.js'),
+    mongoose = require('mongoose');
+
 var app = express();
 
-var mongoose = require('mongoose');
+var credentials = require('./credentials.js');
+
 var opts = {
     server:{
         socketOptions: {keepAlive: 1}
     }
 };
-var credentials = require('./credentials.js');
 
-var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport('smtps://'+credentials.gmail.user+':'+credentials.gmail.password+'@smtp.gmail.com');
-
 
 
 // switch (app.get('env')){
@@ -27,39 +32,29 @@ var transporter = nodemailer.createTransport('smtps://'+credentials.gmail.user+'
 
 app.set('port', process.env.PORT || 7000);
 app.set('view engine', 'jade');
-app.set('views', __dirname +'/app/views');
+app.set('views', __dirname +'/views');
 
-var database = require('./db.js');
-database.initdb;
+// logging
+switch(app.get('env')){
+    case 'development':
+        // compact, colorful dev logging
+        app.use(require('morgan')('dev'));
+        break;
+    case 'production':
+        // module 'express-logger' supports daily log rotation
+        app.use(require('express-logger')({ path: __dirname + '/log/requests.log'}));
+        break;
+}
 
-
-app.use(    require('cookie-parser')(credentials.cookieSecret),
+app.use(    expressSession({resave: false,
+                            saveUninitialized: false,
+                            secret: credentials.cookieSecret}),
+            cookieParser(credentials.cookieSecret),
+            bodyParser.urlencoded({ extended: true }),
             express.static(__dirname + '/public'),
             function(err, req, res, next){
                 console.log('Error : ' + err.message);
                 next()});
-app.use(require('body-parser'). urlencoded({ extended: true }));
-
-app.get('/', function(req, res){
-    res.render('home', {title: "Home Page"});
-});
-app.get('/aboutus', function(req, res){
-    res.render('aboutus', {title: "About us"});
-});
-app.get('/add_receipt', function(req, res){
-    res.render('add_receipt', {title: "Add new receipt"});
-});
-app.get('/allreceipts', function(req, res){
-    res.render('allreceipts', {title: "List Of Receipts"});
-});
-
-app.get('/rating', function(req, res){
-    res.render('rating', {title: "Rating of receipts"});
-});
-
-app.get('/thank-you', function(req, res){
-    res.render('thank-you');
-});
 
 app.post('/aboutus', function (req, res) {
     var text = req.body.text;
@@ -73,20 +68,13 @@ app.post('/aboutus', function (req, res) {
         function(error, info){ if(error){return console.log(error);}
             console.log('Message sent: ' + info.response);
         });
-    res.redirect(303, '/thank-you'/*, {message: "Thank you for sending letter!"}*/)
+    res.redirect(303, '/thank-you')
 });
-// var require('./send-mail.js');
 
-app.post('/add_receipt', function (req, res) {
-    var text = req.body.text;
-    var title = req.body.title;
-    var ingredients = req.body.ingredients;
-    var description = req.body.description;
-    var link = req.body.link;
+// add routes
+require('./routes.js')(app);
 
-    res.redirect(303, '/thank-you', {message: "Thank you for new receipt!"})
-});
-//!!!!!!!!!here other routes
+
 
 
 

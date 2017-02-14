@@ -26,7 +26,7 @@ var initdb = (function(){
             });
             //_db.close();
         });
-        console.log("Called finds");
+        console.log("DB inited");
     })
 }());
 
