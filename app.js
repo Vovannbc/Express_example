@@ -54,7 +54,7 @@ app.use(    expressSession({resave: false,
             express.static(__dirname + '/public'),
             function(err, req, res, next){
                 console.log('Error : ' + err.message);
-                next()});
+                next();});
 
 app.post('/aboutus', function (req, res) {
     var text = req.body.text;
@@ -68,7 +68,7 @@ app.post('/aboutus', function (req, res) {
         function(error, info){ if(error){return console.log(error);}
             console.log('Message sent: ' + info.response);
         });
-    res.redirect(303, '/thank-you')
+    res.redirect(303, '/thank-you');
 });
 
 // add routes
@@ -81,12 +81,12 @@ require('./routes.js')(app);
 app.use(function(req, res){
     res.type('text/html');
     res.status(404);
-    res.render('404')});
+    res.render('404');});
 
 app.use(function(err, req, res, next){
         console.error(err.stack);
         res.status(500);
-        res.render('500')});
+        res.render('500');});
 
 app.listen(app.get('port'), function(){
     console.log('Express started on http://localhost:' + app.get('port') + ' press Ctrl-C to terminate');

@@ -1,10 +1,10 @@
 "use strict";
-var send_mail = require('./controllers/send_mail');
+var send_mail = require('./app/controllers/send_mail');
 var phrases = require('./other/server_phrases');
 
 module.exports = (app)=> {
 
-    app.get('/',                (req, res)=>{res.render('home',               {title: "Home Page", phrase: phrases.getPhrase()})});
+    app.get('/',                (req, res, next)=>{res.render('home',         {title: "Home Page", phrase: phrases.getPhrase()})});
     app.get('/aboutus',         (req, res, next)=>{res.render('aboutus',      {title: "About us"})});
     app.get('/add_receipt',     (req, res, next)=>{res.render('add_receipt',  {title: "Add new receipt"})});
     app.get('/allreceipts',     (req, res, next)=>{res.render('allreceipts',  {title: "List Of Receipts"})});

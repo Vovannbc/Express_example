@@ -47,5 +47,10 @@
     "string": "^3.3.3",
     "validator": "^6.1.0",
     "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-exec": "^1.0.1"
   }
 }
