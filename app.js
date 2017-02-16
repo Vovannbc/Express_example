@@ -4,6 +4,11 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser= require('body-parser'),
     database = require('./db.js'),
+    path = require('path'),
+    expressValidator = require('express-validator'),
+    flash = require('connect-flash'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
     mongoose = require('mongoose');
 
 var app = express();
@@ -46,47 +51,55 @@ switch(app.get('env')){
         break;
 }
 
-app.use(    expressSession({resave: false,
-                            saveUninitialized: false,
-                            secret: credentials.cookieSecret}),
-            cookieParser(credentials.cookieSecret),
+app.use(    bodyParser.json(),
             bodyParser.urlencoded({ extended: true }),
+            cookieParser(credentials.cookieSecret),
             express.static(__dirname + '/public'),
+            expressSession({resave: true,
+                saveUninitialized: true,
+                secret: credentials.cookieSecret}),
+
             function(err, req, res, next){
                 console.log('Error : ' + err.message);
                 next();});
 
-app.post('/aboutus', function (req, res) {
-    var text = req.body.text;
-    var email = req.body.email;
-    var subject = req.body.subject;
+// Passport init    https://github.com/bradtraversy/loginapp/blob/master/app.js
+app.use(passport.initialize());
+app.use(passport.session());
 
-    transporter.sendMail({from: credentials.gmail.name+" "+credentials.gmail.surname,
-            to: email,
-            subject: subject,
-            text: text},
-        function(error, info){ if(error){return console.log(error);}
-            console.log('Message sent: ' + info.response);
-        });
-    res.redirect(303, '/thank-you');
+// Express Validator https://github.com/ctavan/express-validator
+app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+            , root    = namespace.shift()
+            , formParam = root;
+
+        while(namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param : formParam,
+            msg   : msg,
+            value : value
+        };
+    }
+}));
+
+// Connect Flash  https://github.com/bradtraversy/loginapp/blob/master/app.js
+app.use(flash());
+
+// Global Vars  https://github.com/bradtraversy/loginapp/blob/master/app.js
+app.use(function (req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
+    next();
 });
 
 // add routes
 require('./routes.js')(app);
 
-
-
-
-
-app.use(function(req, res){
-    res.type('text/html');
-    res.status(404);
-    res.render('404');});
-
-app.use(function(err, req, res, next){
-        console.error(err.stack);
-        res.status(500);
-        res.render('500');});
 
 app.listen(app.get('port'), function(){
     console.log('Express started on http://localhost:' + app.get('port') + ' press Ctrl-C to terminate');
