@@ -1,0 +1,40 @@
+include ../partials/head
+include ../partials/navbar
+include ../base-page
+
+mixin REGISTRATION_FORM
+	form(method='post', action='/register')
+		.form-group
+			label Name
+			input.form-control(type='text', placeholder='Name', name='name')
+		.form-group
+			label Username
+			input.form-control(type='text', placeholder='Username', name='username')
+		.form-group
+			label Email
+			input.form-control(type='text', placeholder='Email', name='email')
+		.form-group
+			label Password
+			input.form-control(type='text', placeholder='Password', name='password')
+		.form-group
+			label Confirm password
+			input.form-control(type='text', placeholder='Password', name='password2')
+		.form-group
+			button.btn.btn-submit(type='submit') Submit
+
+html
+	+HEAD
+	title!= title
+	body
+		+NAVBAR
+		+BACKGROUND_IMAGE
+		+CONTAINER_MD_6_CENTER
+			h2.text-center Register
+		if errors
+			+CONTAINER_SM_4_CENTER
+				each error in errors
+					.alert.alert-danger #{error.msg}
+
+		+CONTAINER_MD_4_CENTER
+			+REGISTRATION_FORM
+	+BOTTOM_SCRIPTS

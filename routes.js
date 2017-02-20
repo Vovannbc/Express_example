@@ -1,6 +1,7 @@
 "use strict";
 var send_mail = require('./app/controllers/send_mail');
 var phrases = require('./other/server_phrases');
+var authvalidation = require('./app/controllers/validation');
 
 module.exports = (app)=> {
 
@@ -11,9 +12,12 @@ module.exports = (app)=> {
     app.get('/rating',          (req, res, next)=>{res.render('rating',       {title: "Rating of receipts"})});
     app.get('/thank-you',       (req, res, next)=>{res.render('thank-you');});
 
-    app.get('/register',        (req, res)=>{res.render('register')});
-    app.get('/login',           (req, res)=>{res.render('login')});
+    app.get('/register',        (req, res)=>{res.render('auth/register',    {title: "Registration page"})});
+    app.get('/login',           (req, res)=>{res.render('auth/login')});
 
+    app.post('/register',        (req, res)=>{
+        authvalidation.authValidation(req, res)
+    });
     app.post('/aboutus',        send_mail.sendMail);
     app.post('/add_receipt',    (req, res)=>{
         var text = req.body.text;
