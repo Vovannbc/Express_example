@@ -1,0 +1,25 @@
+include partials/head
+include partials/navbar
+include base-page
+
++ANGULAR_1_6_SCRIPT
+script(src="/js/angular_controller.js")
++BASIS_PAGE_CTRL
+	+CONTAINER_MD_6_CENTER
+		input(type='checkbox', ng-model="styleObj.color")
+		| Color
+		br
+		input(type='checkbox', ng-model="styleObj.border")
+		|Border
+		br
+		input(type='checkbox', ng-model="styleObj.size")
+		| Size
+		br
+
+		div(ng-class="styleObj") Test block
+
+		ul
+			li(ng-repeat="item in ['red', 'orange', 'green']" ng-click='handleEvent(item)' value='{{item}}')
+
+
++BOTTOM_SCRIPTS

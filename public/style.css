@@ -17,3 +17,17 @@ body {
 .navbar {
     margin-bottom: 0;
 }
+
+.color {
+    background-color: #761c19;
+}
+
+.border {
+    border: 2px solid #8c8c8c;
+}
+
+.size {
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+}

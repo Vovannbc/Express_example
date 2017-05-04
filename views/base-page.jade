@@ -15,6 +15,15 @@ mixin BASIS_PAGE
 			+CONTAINER_MD_12_CENTER
 				block
 
+mixin BASIS_PAGE_CTRL
+	html(ng-app='SampleApp')
+		+HEAD
+		title!= title || "Someone page"
+		body(ng-controller='SampleAppCtrl')
+			+NAVBAR
+			+CONTAINER_MD_12_CENTER
+				block
+
 mixin BACKGROUND_IMAGE
 	.container-fluid.page-bg
 

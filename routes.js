@@ -11,6 +11,7 @@ module.exports = (app)=> {
     app.get('/allreceipts',     (req, res, next)=>{res.render('allreceipts',  {title: "List Of Receipts"})});
     app.get('/rating',          (req, res, next)=>{res.render('rating',       {title: "Rating of receipts"})});
     app.get('/thank-you',       (req, res, next)=>{res.render('thank-you');});
+    app.get('/testpage',       (req, res, next)=>{res.render('testpage');});
 
     app.get('/register',        (req, res)=>{res.render('auth/register',    {title: "Registration page"})});
     app.get('/login',           (req, res)=>{res.render('auth/login')});
