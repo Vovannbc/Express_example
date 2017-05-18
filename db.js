@@ -15,9 +15,11 @@ function getConnectionInfo() {
 
 var initdb = (function(){
     var dbinfo = getConnectionInfo();
-    database.connect('mongodb://'+dbinfo.host+':'+dbinfo.port+'/'+dbinfo.dbName, function (err, _db) {
+    var url = process.env == "production" ? process.env.MONGODB_URI : 'mongodb://'+dbinfo.host+':'+dbinfo.port+'/'+dbinfo.dbName;
+
+    database.connect(url, function (err, _db) {
         assert.equal(null, err);
-        console.log("Succesfull connected to Db server");
+        console.log("Succesfull connected to Db server " + url);
 
         DB = _db;
         _db.collection(getConnectionInfo().collection).find({}).toArray(function (err, items) {
